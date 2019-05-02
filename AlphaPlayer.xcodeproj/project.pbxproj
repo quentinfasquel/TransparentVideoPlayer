@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66B852FE2279EAD600C95439 /* AlphaPlayerLooper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */; };
+		66B853002279EB5700C95439 /* AlphaQueuePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */; };
+		66B85302227A598B00C95439 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85301227A598B00C95439 /* GridView.swift */; };
+		66B85304227A631E00C95439 /* TouchDownGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85303227A631E00C95439 /* TouchDownGestureRecognizer.swift */; };
+		66B85306227A655000C95439 /* AlphaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */; };
+		66B85308227A65A900C95439 /* AlphaPlayerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85307227A65A900C95439 /* AlphaPlayerRenderer.swift */; };
+		66F03B572275130500956655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B562275130500956655 /* AppDelegate.swift */; };
+		66F03B592275130500956655 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B582275130500956655 /* ViewController.swift */; };
+		66F03B5C2275130500956655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5A2275130500956655 /* Main.storyboard */; };
+		66F03B5E2275130600956655 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5D2275130600956655 /* Assets.xcassets */; };
+		66F03B612275130600956655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5F2275130600956655 /* LaunchScreen.storyboard */; };
+		66F03B6A22752DC200956655 /* playdoh-bat-alpha.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B6822752DC200956655 /* playdoh-bat-alpha.mp4 */; };
+		66F03B6B22752DC200956655 /* playdoh-bat-rgb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B6922752DC200956655 /* playdoh-bat-rgb.mp4 */; };
+		66F03B6D22755C0900956655 /* AlphaPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */; };
+		66F03B6F22768B8F00956655 /* AlphaPlayerItem.metal in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */; };
+		66F03B7122774AA600956655 /* AlphaPlayerItemVideoOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */; };
+		66F03B7322774ADC00956655 /* AlphaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B7222774ADC00956655 /* AlphaPlayerView.swift */; };
+		66F03B7522775C0F00956655 /* AlphaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B7422775C0F00956655 /* AlphaPlayer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerLooper.swift; sourceTree = "<group>"; };
+		66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaQueuePlayer.swift; sourceTree = "<group>"; };
+		66B85301227A598B00C95439 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		66B85303227A631E00C95439 /* TouchDownGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchDownGestureRecognizer.swift; sourceTree = "<group>"; };
+		66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerProtocol.swift; sourceTree = "<group>"; };
+		66B85307227A65A900C95439 /* AlphaPlayerRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerRenderer.swift; sourceTree = "<group>"; };
+		66F03B532275130500956655 /* AlphaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlphaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F03B562275130500956655 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		66F03B582275130500956655 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		66F03B5B2275130500956655 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		66F03B5D2275130600956655 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66F03B602275130600956655 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		66F03B622275130600956655 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66F03B6822752DC200956655 /* playdoh-bat-alpha.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "playdoh-bat-alpha.mp4"; sourceTree = "<group>"; };
+		66F03B6922752DC200956655 /* playdoh-bat-rgb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "playdoh-bat-rgb.mp4"; sourceTree = "<group>"; };
+		66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerItem.swift; sourceTree = "<group>"; };
+		66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = AlphaPlayerItem.metal; sourceTree = "<group>"; };
+		66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerItemVideoOutput.swift; sourceTree = "<group>"; };
+		66F03B7222774ADC00956655 /* AlphaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerView.swift; sourceTree = "<group>"; };
+		66F03B7422775C0F00956655 /* AlphaPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66F03B502275130500956655 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66F03B4A2275130500956655 = {
+			isa = PBXGroup;
+			children = (
+				66F03B552275130500956655 /* AlphaPlayerExample */,
+				66F03B542275130500956655 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		66F03B542275130500956655 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66F03B532275130500956655 /* AlphaPlayerExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66F03B552275130500956655 /* AlphaPlayerExample */ = {
+			isa = PBXGroup;
+			children = (
+				66F03B6822752DC200956655 /* playdoh-bat-alpha.mp4 */,
+				66F03B6922752DC200956655 /* playdoh-bat-rgb.mp4 */,
+				66F03B562275130500956655 /* AppDelegate.swift */,
+				66B85301227A598B00C95439 /* GridView.swift */,
+				66F03B582275130500956655 /* ViewController.swift */,
+				66B85303227A631E00C95439 /* TouchDownGestureRecognizer.swift */,
+				66F03B5A2275130500956655 /* Main.storyboard */,
+				66F03B5D2275130600956655 /* Assets.xcassets */,
+				66F03B5F2275130600956655 /* LaunchScreen.storyboard */,
+				66F03B622275130600956655 /* Info.plist */,
+				66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */,
+				66F03B7422775C0F00956655 /* AlphaPlayer.swift */,
+				66B85307227A65A900C95439 /* AlphaPlayerRenderer.swift */,
+				66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */,
+				66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */,
+				66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */,
+				66F03B7222774ADC00956655 /* AlphaPlayerView.swift */,
+				66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */,
+				66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */,
+			);
+			path = AlphaPlayerExample;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		66F03B522275130500956655 /* AlphaPlayerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66F03B652275130600956655 /* Build configuration list for PBXNativeTarget "AlphaPlayerExample" */;
+			buildPhases = (
+				66F03B4F2275130500956655 /* Sources */,
+				66F03B502275130500956655 /* Frameworks */,
+				66F03B512275130500956655 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlphaPlayerExample;
+			productName = TestComposition;
+			productReference = 66F03B532275130500956655 /* AlphaPlayerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		66F03B4B2275130500956655 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Quentin Fasquel";
+				TargetAttributes = {
+					66F03B522275130500956655 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 66F03B4E2275130500956655 /* Build configuration list for PBXProject "AlphaPlayer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 66F03B4A2275130500956655;
+			productRefGroup = 66F03B542275130500956655 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				66F03B522275130500956655 /* AlphaPlayerExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66F03B512275130500956655 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F03B6A22752DC200956655 /* playdoh-bat-alpha.mp4 in Resources */,
+				66F03B612275130600956655 /* LaunchScreen.storyboard in Resources */,
+				66F03B5E2275130600956655 /* Assets.xcassets in Resources */,
+				66F03B5C2275130500956655 /* Main.storyboard in Resources */,
+				66F03B6B22752DC200956655 /* playdoh-bat-rgb.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		66F03B4F2275130500956655 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F03B6F22768B8F00956655 /* AlphaPlayerItem.metal in Sources */,
+				66F03B7122774AA600956655 /* AlphaPlayerItemVideoOutput.swift in Sources */,
+				66B853002279EB5700C95439 /* AlphaQueuePlayer.swift in Sources */,
+				66F03B6D22755C0900956655 /* AlphaPlayerItem.swift in Sources */,
+				66F03B592275130500956655 /* ViewController.swift in Sources */,
+				66F03B7522775C0F00956655 /* AlphaPlayer.swift in Sources */,
+				66B85308227A65A900C95439 /* AlphaPlayerRenderer.swift in Sources */,
+				66F03B7322774ADC00956655 /* AlphaPlayerView.swift in Sources */,
+				66B852FE2279EAD600C95439 /* AlphaPlayerLooper.swift in Sources */,
+				66B85304227A631E00C95439 /* TouchDownGestureRecognizer.swift in Sources */,
+				66B85306227A655000C95439 /* AlphaPlayerProtocol.swift in Sources */,
+				66B85302227A598B00C95439 /* GridView.swift in Sources */,
+				66F03B572275130500956655 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		66F03B5A2275130500956655 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66F03B5B2275130500956655 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		66F03B5F2275130600956655 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66F03B602275130600956655 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		66F03B632275130600956655 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		66F03B642275130600956655 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		66F03B662275130600956655 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H9EZHJZX4M;
+				INFOPLIST_FILE = AlphaPlayerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.quentinfasquel.AlphaPlayerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		66F03B672275130600956655 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H9EZHJZX4M;
+				INFOPLIST_FILE = AlphaPlayerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.quentinfasquel.AlphaPlayerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66F03B4E2275130500956655 /* Build configuration list for PBXProject "AlphaPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66F03B632275130600956655 /* Debug */,
+				66F03B642275130600956655 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66F03B652275130600956655 /* Build configuration list for PBXNativeTarget "AlphaPlayerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66F03B662275130600956655 /* Debug */,
+				66F03B672275130600956655 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 66F03B4B2275130500956655 /* Project object */;
+}
