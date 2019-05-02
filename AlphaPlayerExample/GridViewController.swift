@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GridViewController.swift
 //  TestComposition
 //
 //  Created by Quentin Fasquel on 27/04/2019.
@@ -14,7 +14,7 @@ enum AppError: Error {
     case resourceNotFound
 }
 
-class ViewController: UIViewController {
+class GridViewController: UIViewController {
 
     var players: [AlphaPlayerProtocol] = []
 

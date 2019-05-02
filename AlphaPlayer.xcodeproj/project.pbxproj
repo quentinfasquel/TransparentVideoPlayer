@@ -24,7 +24,7 @@
 		66B85334227A6F3300C95439 /* AlphaQueuePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */; };
 		66B85335227A6F3300C95439 /* AlphaPlayerItem.metal in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */; };
 		66F03B572275130500956655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B562275130500956655 /* AppDelegate.swift */; };
-		66F03B592275130500956655 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B582275130500956655 /* ViewController.swift */; };
+		66F03B592275130500956655 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B582275130500956655 /* GridViewController.swift */; };
 		66F03B5C2275130500956655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5A2275130500956655 /* Main.storyboard */; };
 		66F03B5E2275130600956655 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5D2275130600956655 /* Assets.xcassets */; };
 		66F03B612275130600956655 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5F2275130600956655 /* LaunchScreen.storyboard */; };
@@ -85,7 +85,7 @@
 		66B85320227A6F2800C95439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66F03B532275130500956655 /* AlphaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlphaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F03B562275130500956655 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		66F03B582275130500956655 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		66F03B582275130500956655 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		66F03B5B2275130500956655 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66F03B5D2275130600956655 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66F03B602275130600956655 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 				66F03B6922752DC200956655 /* playdoh-bat-rgb.mp4 */,
 				66F03B562275130500956655 /* AppDelegate.swift */,
 				66B85301227A598B00C95439 /* GridView.swift */,
-				66F03B582275130500956655 /* ViewController.swift */,
+				66F03B582275130500956655 /* GridViewController.swift */,
 				66B85303227A631E00C95439 /* TouchDownGestureRecognizer.swift */,
 				66F03B5A2275130500956655 /* Main.storyboard */,
 				66F03B5D2275130600956655 /* Assets.xcassets */,
@@ -360,7 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66F03B592275130500956655 /* ViewController.swift in Sources */,
+				66F03B592275130500956655 /* GridViewController.swift in Sources */,
 				66B85304227A631E00C95439 /* TouchDownGestureRecognizer.swift in Sources */,
 				66B85302227A598B00C95439 /* GridView.swift in Sources */,
 				66F03B572275130500956655 /* AppDelegate.swift in Sources */,
