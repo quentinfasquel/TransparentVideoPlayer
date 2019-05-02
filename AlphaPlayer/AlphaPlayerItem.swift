@@ -18,7 +18,7 @@ enum AlphaPlayerItemError: Error {
 ///
 ///
 ///
-class AlphaPlayerItem: AVPlayerItem {
+public class AlphaPlayerItem: AVPlayerItem {
     
     ///
     public let alphaItem: AVPlayerItem
@@ -54,7 +54,7 @@ class AlphaPlayerItem: AVPlayerItem {
         super.init(asset: assetRGB, automaticallyLoadedAssetKeys: nil)
     }
     
-    override func copy(with zone: NSZone? = nil) -> Any {
+    public override func copy(with zone: NSZone? = nil) -> Any {
         return AlphaPlayerItem(asset, assetAlpha: alphaItem.asset)
     }
 
@@ -83,20 +83,20 @@ class AlphaPlayerItem: AVPlayerItem {
     
     // MARK: -
     
-    override func seek(to date: Date, completionHandler: ((Bool) -> Void)? = nil) -> Bool {
+    public override func seek(to date: Date, completionHandler: ((Bool) -> Void)? = nil) -> Bool {
         let singleCompletionHandler = mergeSuccess(completionHandler: completionHandler, count: 2)
 
         return super.seek(to: date, completionHandler: singleCompletionHandler)
             && alphaItem.seek(to: date, completionHandler: singleCompletionHandler)
     }
 
-    override func seek(to time: CMTime, completionHandler: ((Bool) -> Void)? = nil) {
+    public override func seek(to time: CMTime, completionHandler: ((Bool) -> Void)? = nil) {
         let singleCompletionHandler = mergeSuccess(completionHandler: completionHandler, count: 2)
         super.seek(to: time, completionHandler: singleCompletionHandler)
         alphaItem.seek(to: time, completionHandler: singleCompletionHandler)
     }
 
-    override func step(byCount stepCount: Int) {
+    public override func step(byCount stepCount: Int) {
         super.step(byCount: stepCount)
         alphaItem.step(byCount: stepCount)
     }

@@ -65,7 +65,8 @@ public class AlphaPlayerItemVideoOutput: NSObject, AVPlayerItemOutputPullDelegat
     }
 
     private func setupMetal(device: MTLDevice) {
-        let defaultLibrary = device.makeDefaultLibrary()!
+        let bundle = Bundle(for: type(of: self))
+        let defaultLibrary = try! device.makeDefaultLibrary(bundle: bundle)
 //        let vertexProgram = defaultLibrary.makeFunction(name: "basic_vertex")
 //        let fragmentProgram = defaultLibrary.makeFunction(name: "basic_fragment")
         let vertexProgram = defaultLibrary.makeFunction(name: "mapTexture")

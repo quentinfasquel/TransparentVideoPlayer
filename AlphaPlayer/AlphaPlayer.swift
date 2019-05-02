@@ -15,14 +15,14 @@ public class AlphaPlayer: AVPlayer, AlphaPlayerProtocol {
     private var playerItem: AlphaPlayerItem!
     
     ///
-    var alphaPlayer: AVPlayer!
+    internal var alphaPlayer: AVPlayer!
 
     public override init() {
         super.init()
     }
 
     // status ready -> if alphaPlayer status ready
-    required init(alphaPlayerItem item: AlphaPlayerItem) {
+    public required init(alphaPlayerItem item: AlphaPlayerItem) {
         super.init(playerItem: item)
         playerItem = item
         alphaPlayer = AVPlayer(playerItem: item.alphaItem)

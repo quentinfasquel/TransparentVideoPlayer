@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import AlphaPlayer
 import UIKit
 
 enum AppError: Error {
@@ -19,6 +20,7 @@ class ViewController: UIViewController {
 
     let clipCellsToBounds: Bool = true
     
+     // 3 x 5 is still working fine
     let gridView = GridView(columnCount: 1, rowCount: 2)
     
     override func viewDidLoad() {
@@ -43,7 +45,7 @@ class ViewController: UIViewController {
             guard let player = try? createPlayer() else {
                 return
             }
-            
+
             players.append(player)
             
             // let layer = AlphaPlayerLayer(player: player), set playerView's layer?
@@ -51,7 +53,6 @@ class ViewController: UIViewController {
             // TODO: Get playerItem size, apply to playerView
             playerView.setPlayer(player)
             player.seek(to: .zero)
-//            player.seek(to: CMTime(seconds: 1.0, preferredTimescale: 10))
         }
 
         addPlayer(0, 0)

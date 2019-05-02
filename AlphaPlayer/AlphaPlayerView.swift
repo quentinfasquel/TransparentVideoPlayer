@@ -14,13 +14,14 @@ import UIKit
 // - pixelBufferAttributes should be able to change on the go
 // - 
 
-class AlphaPlayerView: MTKView, AlphaPlayerItemVideoOutputProtocol {
+public class AlphaPlayerView: MTKView, AlphaPlayerItemVideoOutputProtocol {
     
     private let playerItemVideoOutput: AlphaPlayerItemVideoOutput
     private var playerRenderer: AlphaPlayerRenderer!
-    private(set) weak var player: AlphaPlayerProtocol?
+
+    public private(set) weak var player: AlphaPlayerProtocol?
     
-    override init(frame frameRect: CGRect, device: MTLDevice?) {
+    public override init(frame frameRect: CGRect, device: MTLDevice?) {
         // Create texture cache
         guard let device = device else {
             fatalError()
@@ -34,23 +35,23 @@ class AlphaPlayerView: MTKView, AlphaPlayerItemVideoOutputProtocol {
         layer.isOpaque = false
     }
 
-    required init(coder: NSCoder) {
+    public required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     var observer: NSKeyValueObservation!
     
-    public func setPlayer(_ player: AlphaPlayerProtocol) {
-        playerRenderer = AlphaPlayerRenderer(player: player, output: self)
-        // starts callback
+    public func setPlayer(_ alphaPlayer: AlphaPlayerProtocol) {
+        player = alphaPlayer
+        playerRenderer = AlphaPlayerRenderer(player: alphaPlayer, output: self)
+
+        // On currentItem change, keep output
         observer = (player as? AVPlayer)?.observe(\AVPlayer.currentItem, options: [.new], changeHandler: { [unowned self] player, _ in
             if let alphaPlayerItem = player.currentItem as? AlphaPlayerItem {
                 alphaPlayerItem.add(self.rgbOutput)
                 alphaPlayerItem.alphaItem.add(self.alphaOutput)
             }
         })
-        
-        self.player = player
     }
     
     // MARK: - AlphaPlayerItemVideoOutput
