@@ -16,6 +16,10 @@ public protocol PlaybackControl {
     func seek(to time: CMTime)
 }
 
+public protocol PlayerProtocol: AnyObject, PlaybackControl {
+    var currentItem: AVPlayerItem? { get }
+}
+
 public protocol AlphaPlayerProtocol: AnyObject, PlaybackControl {
     var currentItem: AVPlayerItem? { get }
     var currentAlphaItem: AVPlayerItem? { get }

@@ -7,25 +7,17 @@
 //
 
 #include <metal_stdlib>
-using namespace metal;
+#include <simd/simd.h>
 
-//vertex float4 basic_vertex(
-//  const device packed_float3* vertex_array [[ buffer(0) ]],
-//  unsigned int vid [[ vertex_id ]] ) {
-//
-//    return float4(vertex_array[vid], 1.0);
-//}
-//
-//fragment half4 basic_fragment() {
-//    return half4(1.0);
-//}
+using namespace metal;
 
 typedef struct {
     float4 position [[position]];
     float2 textureCoordinate;
 } TextureMappingVertex;
 
-vertex TextureMappingVertex mapTexture(unsigned int vid [[ vertex_id ]]) {
+vertex TextureMappingVertex vertex_mapTexture(unsigned int vid [[ vertex_id ]])
+{
     float4x4 position = float4x4(float4( -1.0, -1.0, 0.0, 1.0 ), /// (x, y, depth, W)
                                  float4(  1.0, -1.0, 0.0, 1.0 ),
                                  float4( -1.0,  1.0, 0.0, 1.0 ),
@@ -42,22 +34,43 @@ vertex TextureMappingVertex mapTexture(unsigned int vid [[ vertex_id ]]) {
     return out;
 }
 
-fragment half4 displayTexture(TextureMappingVertex in [[ stage_in ]],
-                              texture2d<float, access::sample> texture [[ texture(0) ]]) {
+fragment float4 displayTexture(TextureMappingVertex in [[ stage_in ]],
+                              texture2d<float, access::sample> texture [[ texture(0) ]])
+{
 //    constexpr sampler textureSampler(address::clamp_to_edge, filter::linear);
     constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
     
-    return half4(texture.sample(textureSampler, in.textureCoordinate));
+    return float4(texture.sample(textureSampler, in.textureCoordinate));
 }
 
-fragment half4 alphaFrame(TextureMappingVertex in [[ stage_in ]],
+fragment float4 fragment_alphaFrame(TextureMappingVertex in [[ stage_in ]],
                           texture2d<float, access::sample> textureRGB [[ texture(0) ]],
-                          texture2d<float, access::sample> textureAlpha [[ texture(1) ]]) {
-    //    constexpr sampler textureSampler(address::clamp_to_edge, filter::linear);
-    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
+                          texture2d<float, access::sample> textureAlpha [[ texture(1) ]])
+{
+//    constexpr sampler textureSampler(address::clamp_to_edge, filter::linear);
+//    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear);
+    constexpr sampler textureSampler(mag_filter::nearest, min_filter::nearest);
     
-    half4 colorFrame = half4(textureRGB.sample(textureSampler, in.textureCoordinate));
-    half4 alphaFrame = half4(textureAlpha.sample(textureSampler, in.textureCoordinate));
+    float4 colorFrame = float4(textureRGB.sample(textureSampler, in.textureCoordinate));
+    float alpha = float4(textureAlpha.sample(textureSampler, in.textureCoordinate)).r;
 
-    return half4(colorFrame.rgb, alphaFrame.r);
+    return alpha > 0 ? float4(colorFrame.rgb, alpha) : float4(0);
+}
+
+kernel void kernel_alphaFrame(texture2d<half, access::read> textureRGB [[ texture(0) ]],
+                        texture2d<half, access::read> textureAlpha [[ texture(1) ]],
+                        texture2d<float, access::write> outTexture [[ texture(2) ]],
+                        ushort2 gid [[ thread_position_in_grid ]])
+{
+    // Check if the pixel is within the bounds of the output texture
+    if ((gid.x >= outTexture.get_width()) || (gid.y >= outTexture.get_height())) {
+        // Return early if the pixel is out of bounds
+        return;
+    }
+
+    float3 rgb = float4(textureRGB.read(gid)).rgb;
+    float alpha = textureAlpha.read(gid).r;
+
+    float4 pixel = alpha > 0 ? float4(rgb, alpha) : float4(0);
+    outTexture.write(pixel, gid);
 }

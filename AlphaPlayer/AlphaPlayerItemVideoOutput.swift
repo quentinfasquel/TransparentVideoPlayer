@@ -12,139 +12,78 @@ import QuartzCore.CAMetalLayer
 import UIKit
 
 ///
-protocol AlphaPlayerItemVideoOutputProtocol  { // add Video
-    var rgbOutput: AVPlayerItemVideoOutput { get } // input
-    var alphaOutput: AVPlayerItemVideoOutput { get } // input
-    // naturalSize?
+public protocol MultiplePlayerItemVideoOutput: AbstractPlayerItemVideoOutput { // add Video
+    associatedtype OutputId: RawRepresentable & Hashable
 
-    @discardableResult
-    func render(_ rgbPixelBuffer: CVPixelBuffer, _ alphaPixelBuffer: CVPixelBuffer) -> MTLCommandBuffer?
+    var outputs: [OutputId: AVPlayerItemVideoOutput] { get }
+}
+
+public enum AlphaPlayerItemVideoOutputId: String {
+    case rgb, alpha
 }
 
 ///
-/// Renders into a Metal texture
+/// An aggregate of an `rgb` and a `alpha` AVPlayerItemVideoOutputs
 ///
-public class AlphaPlayerItemVideoOutput: NSObject, AVPlayerItemOutputPullDelegate, AlphaPlayerItemVideoOutputProtocol {
+public class AlphaPlayerItemVideoOutput: NSObject, MultiplePlayerItemVideoOutput {
 
+    public typealias OutputId = AlphaPlayerItemVideoOutputId
+    public var outputs: [OutputId: AVPlayerItemVideoOutput] = [:]
+
+    public var outputRGB: AVPlayerItemVideoOutput { return outputs[.rgb]! }
+    public var outputAlpha: AVPlayerItemVideoOutput { return outputs[.alpha]! }
+
+    // MARK: -
+    
     private let queue: DispatchQueue = DispatchQueue(label: "blop") // item output pull delegate
-    public let rgbOutput: AVPlayerItemVideoOutput
-    public let alphaOutput: AVPlayerItemVideoOutput
 
     // state
     var rgbItemReady: Bool = false
     var alphaItemReady: Bool = false
-    
-    let device: MTLDevice
-    var commandQueue: MTLCommandQueue!
-    var pipelineState: MTLRenderPipelineState!
-    var vertexBuffer: MTLBuffer!
-    
-    var currentTexture: MTLTexture?
-    var textureCache: CVMetalTextureCache!
+
     var onReadyToPlay: (() -> Void)?
     
-    required init(device metalDevice: MTLDevice) {
-        let attributes: [String: Any] = [
-//            String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange]
-            String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA]
-
-        device = metalDevice
-        rgbOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: attributes)
-        alphaOutput = AVPlayerItemVideoOutput(pixelBufferAttributes: attributes)
-
+    public override required init() {
         super.init()
 
-        setupMetal(device: device)
-
-        rgbOutput.setDelegate(self, queue: queue)
-        alphaOutput.setDelegate(self, queue: queue)
+        setupOutputs()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupMetal(device: MTLDevice) {
-        let bundle = Bundle(for: type(of: self))
-        let defaultLibrary = try! device.makeDefaultLibrary(bundle: bundle)
-//        let vertexProgram = defaultLibrary.makeFunction(name: "basic_vertex")
-//        let fragmentProgram = defaultLibrary.makeFunction(name: "basic_fragment")
-        let vertexProgram = defaultLibrary.makeFunction(name: "mapTexture")
-        let fragmentProgram = defaultLibrary.makeFunction(name: "alphaFrame")
+    private func setupOutputs() {
+        // TODO: Allow reading with a different pixelFormatType?
+        let attributes: [String: Any] = [
+//            String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+            String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA
+        ]
 
-        let pipelineStateDescriptor = MTLRenderPipelineDescriptor()
-        pipelineStateDescriptor.vertexFunction = vertexProgram
-        pipelineStateDescriptor.fragmentFunction = fragmentProgram
-        pipelineStateDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        let outputRGB = AVPlayerItemVideoOutput(pixelBufferAttributes: attributes)
+        outputRGB.setDelegate(self, queue: queue)
         
-        pipelineState = try! device.makeRenderPipelineState(descriptor: pipelineStateDescriptor)
-        
-        commandQueue = device.makeCommandQueue()
-        
-        // CoreVideo Metal Texture cache
-        
-        let result = CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache)
-        if result != kCVReturnSuccess {
-            assertionFailure("Unable to allocate video mixer texture cache")
-        }
+        let outputAlpha = AVPlayerItemVideoOutput(pixelBufferAttributes: attributes)
+        outputAlpha.setDelegate(self, queue: queue)
+
+        outputs = [.rgb: outputRGB, .alpha: outputAlpha]
     }
     
-    @discardableResult
-    public func render(_ rgbPixelBuffer: CVPixelBuffer, _ alphaPixelBuffer: CVPixelBuffer) -> MTLCommandBuffer? {
-        guard let outputTexture = currentTexture else {
-            print("Skip renderring no texture")
-            return nil
-        }
-
-        guard let videoTexture0 = makeTextureFromCVPixelBuffer(pixelBuffer: rgbPixelBuffer),
-            let videoTexture1 = makeTextureFromCVPixelBuffer(pixelBuffer: alphaPixelBuffer) else {
-                print("video texture cannot be created")
-                return nil
-        }
-        
-        // Rendering
-        let passDescriptor = MTLRenderPassDescriptor()
-        passDescriptor.colorAttachments[0].texture = outputTexture
-        passDescriptor.colorAttachments[0].loadAction = .clear
-        passDescriptor.colorAttachments[0].storeAction = .store
-        passDescriptor.colorAttachments[0].clearColor = .init(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-        
-        let commandBuffer = commandQueue.makeCommandBuffer()!
-        let encoder = commandBuffer.makeRenderCommandEncoder(descriptor: passDescriptor)!
-        encoder.setRenderPipelineState(pipelineState)
-        encoder.setFragmentTexture(videoTexture0, index: 0) // rgb
-        encoder.setFragmentTexture(videoTexture1, index: 1) // alpha
-        encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: 1)
-        encoder.endEncoding()
-
-        return commandBuffer
+    public func itemTime(forHostTime hostTimeInSeconds: CFTimeInterval) -> CMTime {
+        return outputRGB.itemTime(forHostTime: hostTimeInSeconds)
     }
-    
-    public func makeTextureFromCVPixelBuffer(pixelBuffer: CVPixelBuffer) -> MTLTexture? {
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
-        
-        // Create a Metal texture from the image buffer
-        var cvTextureOut: CVMetalTexture?
 
-        CVMetalTextureCacheCreateTextureFromImage(
-            kCFAllocatorDefault, textureCache, pixelBuffer, nil, .bgra8Unorm, width, height, 0, &cvTextureOut)
-        guard let cvTexture = cvTextureOut, let texture = CVMetalTextureGetTexture(cvTexture) else {
-            print("Video mixer failed to create preview texture")
-            CVMetalTextureCacheFlush(textureCache, 0)
-            return nil
-        }
-        
-        return texture
-    }
+}
+
+// MARK: - AVPlayerItemOutputPullDelegate
     
-    // MARK: - AVPlayerItemOutputPullDelegate
+extension AlphaPlayerItemVideoOutput: AVPlayerItemOutputPullDelegate {
     
     public func outputMediaDataWillChange(_ sender: AVPlayerItemOutput) {
         switch sender {
-        case rgbOutput:
+        case outputRGB:
             rgbItemReady = true
-        case alphaOutput:
+        case outputAlpha:
             alphaItemReady = true
         default:
             return // unexpected

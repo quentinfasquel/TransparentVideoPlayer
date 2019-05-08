@@ -8,6 +8,9 @@
 
 import AVFoundation
 
+// TODO: Explore looping, chaining of items, etc.
+///
+/// 
 ///
 public class AlphaPlayer: AVPlayer, AlphaPlayerProtocol {
 
@@ -38,6 +41,8 @@ public class AlphaPlayer: AVPlayer, AlphaPlayerProtocol {
     public override func play() {
         super.play()
         alphaPlayer.play()
+        
+        // TODO: Understand setRate / hostTime
     }
 
     public override func playImmediately(atRate rate: Float) {

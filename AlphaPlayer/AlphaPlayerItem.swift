@@ -41,13 +41,13 @@ public class AlphaPlayerItem: AVPlayerItem {
             throw AlphaPlayerItemError.incorrectFormat
         }
 
-        guard trackRGB.naturalSize.equalTo(trackAlpha.naturalSize) else {
-            throw AlphaPlayerItemError.incorrectSize
-        }
-
-        guard assetRGB.duration == assetAlpha.duration else {
-            throw AlphaPlayerItemError.incorrectDuration
-        }
+//        guard trackRGB.naturalSize.equalTo(trackAlpha.naturalSize) else {
+//            throw AlphaPlayerItemError.incorrectSize
+//        }
+//
+//        guard assetRGB.duration == assetAlpha.duration else {
+//            throw AlphaPlayerItemError.incorrectDuration
+//        }
 
         alphaItem = AVPlayerItem(asset: assetAlpha)
 
