@@ -54,6 +54,8 @@ public class AlphaPlayerItem: AVPlayerItem {
         super.init(asset: assetRGB, automaticallyLoadedAssetKeys: nil)
     }
     
+
+    
     public override func copy(with zone: NSZone? = nil) -> Any {
         return AlphaPlayerItem(asset, assetAlpha: alphaItem.asset)
     }

@@ -9,98 +9,52 @@
 import AVFoundation
 import QuartzCore
 
-internal typealias CVFrame = (pixelBuffer: CVPixelBuffer?, presentationTime: CMTime)
+public struct CVFrame {
+    let itemTime: CMTime
+    var pixelBuffer: CVPixelBuffer?
+    var presentationTime: CMTime = .invalid
+
+    init(itemTime: CMTime) {
+        self.itemTime = itemTime
+    }
+}
+
+//internal typealias CVFrame = (pixelBuffer: CVPixelBuffer?, presentationTime: CMTime)
 
 /// This is the piece that holds a displayLink, common piece for AlphaQueuePlayer & AlphaPlayer
 internal class AlphaPlayerDisplayOutput {
 
-    private let output: AlphaPlayerItemVideoOutput
     private let renderer: AlphaPlayerRendererProtocol
     private let view: AlphaPlayerRendererView
 
-    private var displayLink: CADisplayLink!
-
-    internal init(renderer: AlphaPlayerRendererProtocol, view: AlphaPlayerRendererView) {
-        self.output = AlphaPlayerItemVideoOutput()
+    internal required init(renderer: AlphaPlayerRendererProtocol, view: AlphaPlayerRendererView) {
         self.renderer = renderer
         self.view = view
-        
-        startDisplayLink()
     }
-    
+
     internal convenience init(player: AlphaPlayerProtocol, renderer: AlphaPlayerRendererProtocol, view: AlphaPlayerRendererView) {
-        guard let rgbItem = player.currentItem, let alphaItem = player.currentAlphaItem else {
+        guard let composition = player.currentComposition else {
             fatalError()
         }
 
         self.init(renderer: renderer, view: view)
-        setupItems(rgbItem, alphaItem)
-    }
 
-    internal func setupItems(_ rgbItem: AVPlayerItem, _ alphaItem: AVPlayerItem) {
-        rgbItem.add(output.outputRGB)
-        alphaItem.add(output.outputAlpha)
-    }
-    
-    // MARK: - Display Link
-    
-    private func makeDisplayLink() {
-        #if os(iOS) || os(tvOS)
-        displayLink = CADisplayLink(target: self, selector: #selector(displayLinkCallback))
-        displayLink.isPaused = true
-        displayLink.add(to: .current, forMode: .default)
-        #elseif os(macOS)
-        // TODO
-        #endif
-    }
-    
-    internal func startDisplayLink() {
-        if displayLink == nil {
-            makeDisplayLink()
-        }
+        currentPlayer = player as? AlphaPlayer
+        currentItem = composition
+        configureComposition(composition)
         
-        if displayLink.isPaused {
-            displayLink.isPaused = false
-        }
     }
-    
-    internal func cancelDisplayLink() {
-        displayLink?.isPaused = true
-        displayLink?.invalidate()
-        displayLink = nil
-    }
-    
-    @objc
-    private func displayLinkCallback(_ sender: CADisplayLink) {
-        func fetchFrame(_ output: AVPlayerItemVideoOutput, itemTime: CMTime) -> CVFrame {
-            var pixelBuffer: CVPixelBuffer?
-            var presentationTime: CMTime = .invalid
 
-            if output.hasNewPixelBuffer(forItemTime: itemTime) {
-                pixelBuffer = output.copyPixelBuffer(forItemTime: itemTime, itemTimeForDisplay: &presentationTime)
-            }
-            
-            return (pixelBuffer, presentationTime)
+    private func configureComposition(_ composition: AlphaPlayerItemComposition) {
+        composition.addDisplayOutput(self)
+
+        if composition.displayLink?.isPaused ?? true {
+            composition.startDisplayLink()
         }
-
-        let hostTime = (sender.timestamp + sender.targetTimestamp) * 0.5
-//        let presentationTime = sender.targetTimestamp
-        let itemTime = output.itemTime(forHostTime: hostTime)
-
-        let rgbFrame = fetchFrame(output.outputRGB, itemTime: itemTime)
-        let alphaFrame = fetchFrame(output.outputAlpha, itemTime: itemTime)
-
-        if let rgb = rgbFrame.pixelBuffer, let alpha = alphaFrame.pixelBuffer {
-            displayFrame(rgb, alpha)
-        } else {
-//            if rgbFrame.pixelBuffer == nil && alphaFrame.pixelBuffer == nil {
-//                print("No more frames")
-//            }
-//
-//            if alphaFrame.pixelBuffer == nil {
-//                print("Skipping frame no alpha")
-//            }
-        }
+//        if composition.playbackDelegate == nil {
+//            composition.playbackDelegate = self
+//            composition.startDisplayLink()
+//        }
     }
 
     private func displayFrame(_ rgb: CVPixelBuffer, _ alpha: CVPixelBuffer) {
@@ -113,5 +67,63 @@ internal class AlphaPlayerDisplayOutput {
         let commandBuffer = renderer.render(rgb, alpha)
         commandBuffer?.present(drawable)
         commandBuffer?.commit()
+    }
+    
+    private var currentPlayer: AlphaPlayer?
+    private var nextPlayer: AlphaPlayer?
+
+    // a playback composition, will output to a view using a given renderer
+    private var currentItem: AlphaPlayerItemComposition?
+    private var nextItem: AlphaPlayerItemComposition?
+    
+    private func swapPlayers() {
+        let tmpPlayer = currentPlayer
+        currentPlayer = nextPlayer
+        nextPlayer = tmpPlayer
+    }
+}
+
+// MARK: -
+
+extension AlphaPlayerDisplayOutput: VideoPlaybackCompositionDisplayOutput {
+    func playbackComposition(_ composition: VideoPlaybackComposition, pixelBuffers: [CVPixelBuffer]) {
+        displayFrame(pixelBuffers[0], pixelBuffers[1])
+    }
+}
+
+// MARK: -
+
+extension AlphaPlayerDisplayOutput: VideoPlaybackCompositionDelegate {
+    internal func playbackWillEnd(_ composition: VideoPlaybackComposition) {
+//        print(#function)
+        
+        if let newItem = composition.copy() as? AlphaPlayerItemComposition {
+            nextPlayer?.replaceCurrentItem(with: newItem)
+            nextPlayer?.preload()
+            newItem.startDisplayLink()
+            nextItem = newItem
+        }
+
+        // Prepare for looping
+        // nextItem set nextOutput
+        // nextItem.preroll()
+    }
+    
+    internal func playbackDidEnd(_ composition: VideoPlaybackComposition, hostTime: CMTime) {
+        // Switch currentOutput & nextOutput, compositionCallback to nil
+//        print(#function)
+
+        if let newItem = nextItem, let player = nextPlayer {
+            currentItem?.cancelDisplayLink()
+            configureComposition(newItem)
+            currentItem = newItem
+            
+//            let tti = (item.displayLink.timestamp + item.displayLink.targetTimestamp) * 0.5
+//            let tt = CMTime(value: CMTimeValue(tti * 1000.0), timescale: 1000)
+            player.syncPlay(atHostTime: hostTime)
+            
+            swapPlayers()
+        }
+
     }
 }

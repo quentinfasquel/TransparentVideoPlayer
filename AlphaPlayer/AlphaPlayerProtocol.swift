@@ -21,15 +21,16 @@ public protocol PlayerProtocol: AnyObject, PlaybackControl {
 }
 
 public protocol AlphaPlayerProtocol: AnyObject, PlaybackControl {
-    var currentItem: AVPlayerItem? { get }
-    var currentAlphaItem: AVPlayerItem? { get }
+//    var currentItem: AVPlayerItem? { get }
+//    var currentAlphaItem: AVPlayerItem? { get }
+    var currentComposition: AlphaPlayerItemComposition? { get }
 }
 
 // MARK: -
 
-extension AlphaPlayerProtocol {
-
-    public var currentAlphaItem: AVPlayerItem? {
-        return (currentItem as? AlphaPlayerItem)?.alphaItem
-    }
-}
+//extension AlphaPlayerProtocol {
+//
+//    public var currentAlphaItem: AVPlayerItem? {
+//        return (currentItem as? AlphaPlayerItem)?.alphaItem
+//    }
+//}

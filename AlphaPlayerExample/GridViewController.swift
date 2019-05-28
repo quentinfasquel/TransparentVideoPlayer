@@ -14,6 +14,7 @@ enum AppError: Error {
     case resourceNotFound
 }
 
+/// This controller is mostly useful to test the performance of multiple players (in parallel)
 class GridViewController: UIViewController {
 
     var players: [AlphaPlayerProtocol] = []
@@ -34,9 +35,8 @@ class GridViewController: UIViewController {
             gridView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             gridView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             gridView.topAnchor.constraint(equalTo: view.topAnchor),
-            gridView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-        
+            gridView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+
         setupPlayers()
     }
 
@@ -56,7 +56,7 @@ class GridViewController: UIViewController {
         }
 
         addPlayer(0, 0)
-        addPlayer(0, 1)
+//        addPlayer(0, 1)
 //        addPlayer(0, 2)
 //        addPlayer(0, 3)
 //        addPlayer(0, 4)
@@ -82,7 +82,7 @@ class GridViewController: UIViewController {
         }
         
 
-        let playerItem = try AlphaPlayerItem(url1, url2)
+        let playerItem = try AlphaPlayerItemComposition(url1, url2)
 
         // TODO: Investigate why "replay one item" does not work with AVQueuePlayer
 //        let queuePlayer = AlphaQueuePlayer(alphaPlayerItem: playerItem)
@@ -92,7 +92,7 @@ class GridViewController: UIViewController {
         // TODO: sublass AVPlayerLooper AlphaPlayerLooper?
 //        playerLooper = AlphaPlayerLooper(player: player, templateItem: playerItem)
 
-        return AlphaPlayer(alphaPlayerItem: playerItem)
+        return AlphaPlayer(composition: playerItem)
     }
     
     private func createPlayerView(into container: UIView) -> AlphaPlayerView {

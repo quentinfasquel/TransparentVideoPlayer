@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6655D0F6227EB10A00E5F41B /* AbstractPlayerItemOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655D0F5227EB10A00E5F41B /* AbstractPlayerItemOutput.swift */; };
+		6641F6B0228330CE00F3DE76 /* VideoPlaybackComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F6AF228330CE00F3DE76 /* VideoPlaybackComposition.swift */; };
+		6641F6B2228336D800F3DE76 /* MultipleItemPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F6B1228336D800F3DE76 /* MultipleItemPlayer.swift */; };
+		6641F6B422833C9C00F3DE76 /* MultiplePlayerItemVideoOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F6B322833C9C00F3DE76 /* MultiplePlayerItemVideoOutput.swift */; };
+		6641F6B62287064500F3DE76 /* AlphaPlayerItemComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F6B52287064500F3DE76 /* AlphaPlayerItemComposition.swift */; };
+		6641F6BA2289EB6500F3DE76 /* MultipleItemPlayerLooper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F6B92289EB6500F3DE76 /* MultipleItemPlayerLooper.swift */; };
 		6655D0F8227EC50400E5F41B /* AlphaPlayerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655D0F7227EC50400E5F41B /* AlphaPlayerRenderer.swift */; };
-		6655D0FB227F1DE400E5F41B /* white.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6655D0FA227F1DE400E5F41B /* white.mp4 */; };
-		6655D0FE227F257900E5F41B /* almost-stripes.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6655D0FD227F257800E5F41B /* almost-stripes.mp4 */; };
-		6655D100227F2E8000E5F41B /* colors.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6655D0FF227F2E8000E5F41B /* colors.mp4 */; };
-		6655D102227F403800E5F41B /* almost-black-stripes.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6655D101227F403800E5F41B /* almost-black-stripes.mp4 */; };
 		6655D10522809B4F00E5F41B /* BasePlayerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655D10422809B4F00E5F41B /* BasePlayerRenderer.swift */; };
 		6655D10722809BEE00E5F41B /* AlphaPlayerKernelRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655D10622809BEE00E5F41B /* AlphaPlayerKernelRenderer.swift */; };
 		66B85302227A598B00C95439 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85301227A598B00C95439 /* GridView.swift */; };
@@ -26,14 +26,9 @@
 		66B8532E227A6F3300C95439 /* AlphaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B7222774ADC00956655 /* AlphaPlayerView.swift */; };
 		66B8532F227A6F3300C95439 /* AlphaPlayerDisplayOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85307227A65A900C95439 /* AlphaPlayerDisplayOutput.swift */; };
 		66B85330227A6F3300C95439 /* AlphaPlayerItemVideoOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */; };
-		66B85331227A6F3300C95439 /* AlphaPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */; };
-		66B85332227A6F3300C95439 /* AlphaPlayerLooper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */; };
 		66B85333227A6F3300C95439 /* AlphaPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */; };
-		66B85334227A6F3300C95439 /* AlphaQueuePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */; };
 		66B85335227A6F3300C95439 /* AlphaPlayerItem.metal in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */; };
-		66B85337227A71BB00C95439 /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B85336227A71BB00C95439 /* CompareViewController.swift */; };
-		66B85339227BA18A00C95439 /* osxcolor_test_image_srgb.m4v in Resources */ = {isa = PBXBuildFile; fileRef = 66B85338227BA18A00C95439 /* osxcolor_test_image_srgb.m4v */; };
-		66B8533B227BA19200C95439 /* osxcolor_test_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B8533A227BA19200C95439 /* osxcolor_test_image.png */; };
+		66DA06D8228B2F1D008814B9 /* Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DA06D7228B2F1D008814B9 /* Completion.swift */; };
 		66F03B572275130500956655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B562275130500956655 /* AppDelegate.swift */; };
 		66F03B592275130500956655 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F03B582275130500956655 /* GridViewController.swift */; };
 		66F03B5C2275130500956655 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F03B5A2275130500956655 /* Main.storyboard */; };
@@ -82,12 +77,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6655D0F5227EB10A00E5F41B /* AbstractPlayerItemOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractPlayerItemOutput.swift; sourceTree = "<group>"; };
+		6641F6AF228330CE00F3DE76 /* VideoPlaybackComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackComposition.swift; sourceTree = "<group>"; };
+		6641F6B1228336D800F3DE76 /* MultipleItemPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleItemPlayer.swift; sourceTree = "<group>"; };
+		6641F6B322833C9C00F3DE76 /* MultiplePlayerItemVideoOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplePlayerItemVideoOutput.swift; sourceTree = "<group>"; };
+		6641F6B52287064500F3DE76 /* AlphaPlayerItemComposition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerItemComposition.swift; sourceTree = "<group>"; };
+		6641F6B92289EB6500F3DE76 /* MultipleItemPlayerLooper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleItemPlayerLooper.swift; sourceTree = "<group>"; };
 		6655D0F7227EC50400E5F41B /* AlphaPlayerRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerRenderer.swift; sourceTree = "<group>"; };
-		6655D0FA227F1DE400E5F41B /* white.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = white.mp4; sourceTree = "<group>"; };
-		6655D0FD227F257800E5F41B /* almost-stripes.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "almost-stripes.mp4"; sourceTree = "<group>"; };
-		6655D0FF227F2E8000E5F41B /* colors.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = colors.mp4; sourceTree = "<group>"; };
-		6655D101227F403800E5F41B /* almost-black-stripes.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "almost-black-stripes.mp4"; sourceTree = "<group>"; };
 		6655D10422809B4F00E5F41B /* BasePlayerRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePlayerRenderer.swift; sourceTree = "<group>"; };
 		6655D10622809BEE00E5F41B /* AlphaPlayerKernelRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerKernelRenderer.swift; sourceTree = "<group>"; };
 		66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerLooper.swift; sourceTree = "<group>"; };
@@ -102,9 +97,7 @@
 		66B85317227A6F2800C95439 /* AlphaPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlphaPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B8531E227A6F2800C95439 /* AlphaPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerTests.swift; sourceTree = "<group>"; };
 		66B85320227A6F2800C95439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66B85336227A71BB00C95439 /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
-		66B85338227BA18A00C95439 /* osxcolor_test_image_srgb.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = osxcolor_test_image_srgb.m4v; sourceTree = "<group>"; };
-		66B8533A227BA19200C95439 /* osxcolor_test_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = osxcolor_test_image.png; sourceTree = "<group>"; };
+		66DA06D7228B2F1D008814B9 /* Completion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completion.swift; sourceTree = "<group>"; };
 		66F03B532275130500956655 /* AlphaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlphaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F03B562275130500956655 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66F03B582275130500956655 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
@@ -148,17 +141,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6641F6B72288CFDE00F3DE76 /* deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */,
+				66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */,
+				66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */,
+			);
+			name = deprecated;
+			sourceTree = "<group>";
+		};
+		6641F6B82288CFF700F3DE76 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				6641F6B1228336D800F3DE76 /* MultipleItemPlayer.swift */,
+				6641F6B92289EB6500F3DE76 /* MultipleItemPlayerLooper.swift */,
+				6641F6B322833C9C00F3DE76 /* MultiplePlayerItemVideoOutput.swift */,
+				6641F6AF228330CE00F3DE76 /* VideoPlaybackComposition.swift */,
+				66DA06D7228B2F1D008814B9 /* Completion.swift */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
 		6655D0FC227F1DF800E5F41B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6655D0FD227F257800E5F41B /* almost-stripes.mp4 */,
-				6655D101227F403800E5F41B /* almost-black-stripes.mp4 */,
-				6655D0FF227F2E8000E5F41B /* colors.mp4 */,
-				66B8533A227BA19200C95439 /* osxcolor_test_image.png */,
-				66B85338227BA18A00C95439 /* osxcolor_test_image_srgb.m4v */,
 				66F03B6822752DC200956655 /* playdoh-bat-alpha.mp4 */,
 				66F03B6922752DC200956655 /* playdoh-bat-rgb.mp4 */,
-				6655D0FA227F1DE400E5F41B /* white.mp4 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -176,19 +185,18 @@
 		66B85310227A6F2800C95439 /* AlphaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				6641F6B82288CFF700F3DE76 /* base */,
+				6641F6B72288CFDE00F3DE76 /* deprecated */,
 				6655D10322809B2900E5F41B /* Renderer */,
 				66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */,
-				66F03B7422775C0F00956655 /* AlphaPlayer.swift */,
 				66B85307227A65A900C95439 /* AlphaPlayerDisplayOutput.swift */,
 				66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */,
-				66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */,
-				66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */,
 				66F03B7222774ADC00956655 /* AlphaPlayerView.swift */,
-				66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */,
-				66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */,
+				66F03B7422775C0F00956655 /* AlphaPlayer.swift */,
+				6641F6B52287064500F3DE76 /* AlphaPlayerItemComposition.swift */,
+				66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */,
 				66B85311227A6F2800C95439 /* AlphaPlayer.h */,
 				66B85312227A6F2800C95439 /* Info.plist */,
-				6655D0F5227EB10A00E5F41B /* AbstractPlayerItemOutput.swift */,
 			);
 			path = AlphaPlayer;
 			sourceTree = "<group>";
@@ -227,7 +235,6 @@
 			children = (
 				6655D0FC227F1DF800E5F41B /* Resources */,
 				66F03B562275130500956655 /* AppDelegate.swift */,
-				66B85336227A71BB00C95439 /* CompareViewController.swift */,
 				66B85301227A598B00C95439 /* GridView.swift */,
 				66F03B582275130500956655 /* GridViewController.swift */,
 				66B85303227A631E00C95439 /* TouchDownGestureRecognizer.swift */,
@@ -370,17 +377,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66B85339227BA18A00C95439 /* osxcolor_test_image_srgb.m4v in Resources */,
-				6655D0FB227F1DE400E5F41B /* white.mp4 in Resources */,
 				66F03B6A22752DC200956655 /* playdoh-bat-alpha.mp4 in Resources */,
 				66F03B612275130600956655 /* LaunchScreen.storyboard in Resources */,
 				66F03B5E2275130600956655 /* Assets.xcassets in Resources */,
-				6655D100227F2E8000E5F41B /* colors.mp4 in Resources */,
-				6655D102227F403800E5F41B /* almost-black-stripes.mp4 in Resources */,
 				66F03B5C2275130500956655 /* Main.storyboard in Resources */,
 				66F03B6B22752DC200956655 /* playdoh-bat-rgb.mp4 in Resources */,
-				6655D0FE227F257900E5F41B /* almost-stripes.mp4 in Resources */,
-				66B8533B227BA19200C95439 /* osxcolor_test_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,17 +393,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				66B85335227A6F3300C95439 /* AlphaPlayerItem.metal in Sources */,
+				6641F6B0228330CE00F3DE76 /* VideoPlaybackComposition.swift in Sources */,
+				6641F6B62287064500F3DE76 /* AlphaPlayerItemComposition.swift in Sources */,
 				66B8532E227A6F3300C95439 /* AlphaPlayerView.swift in Sources */,
-				66B85334227A6F3300C95439 /* AlphaQueuePlayer.swift in Sources */,
+				6641F6BA2289EB6500F3DE76 /* MultipleItemPlayerLooper.swift in Sources */,
 				66B8532D227A6F3300C95439 /* AlphaPlayer.swift in Sources */,
 				6655D0F8227EC50400E5F41B /* AlphaPlayerRenderer.swift in Sources */,
-				6655D0F6227EB10A00E5F41B /* AbstractPlayerItemOutput.swift in Sources */,
+				66DA06D8228B2F1D008814B9 /* Completion.swift in Sources */,
 				6655D10522809B4F00E5F41B /* BasePlayerRenderer.swift in Sources */,
-				66B85332227A6F3300C95439 /* AlphaPlayerLooper.swift in Sources */,
+				6641F6B2228336D800F3DE76 /* MultipleItemPlayer.swift in Sources */,
 				6655D10722809BEE00E5F41B /* AlphaPlayerKernelRenderer.swift in Sources */,
 				66B85330227A6F3300C95439 /* AlphaPlayerItemVideoOutput.swift in Sources */,
-				66B85331227A6F3300C95439 /* AlphaPlayerItem.swift in Sources */,
 				66B85333227A6F3300C95439 /* AlphaPlayerProtocol.swift in Sources */,
+				6641F6B422833C9C00F3DE76 /* MultiplePlayerItemVideoOutput.swift in Sources */,
 				66B8532F227A6F3300C95439 /* AlphaPlayerDisplayOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,7 +424,6 @@
 			files = (
 				66F03B592275130500956655 /* GridViewController.swift in Sources */,
 				66B85304227A631E00C95439 /* TouchDownGestureRecognizer.swift in Sources */,
-				66B85337227A71BB00C95439 /* CompareViewController.swift in Sources */,
 				66B85302227A598B00C95439 /* GridView.swift in Sources */,
 				66F03B572275130500956655 /* AppDelegate.swift in Sources */,
 			);

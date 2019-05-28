@@ -31,7 +31,7 @@ public class AlphaPlayerView: MTKView, AlphaPlayerRendererView {
 
         super.init(frame: frameRect, device: device)
 
-        playerRenderer = AlphaPlayerKernelRenderer(device: device)
+        playerRenderer = AlphaPlayerRenderer(device: device)
 
         // Configure metal layer
         guard let metalLayer = layer as? CAMetalLayer else { fatalError() }
@@ -45,19 +45,20 @@ public class AlphaPlayerView: MTKView, AlphaPlayerRendererView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    var observer: NSKeyValueObservation!
+    var observer: NSKeyValueObservation!
     
     public func setPlayer(_ alphaPlayer: AlphaPlayerProtocol) {
         player = alphaPlayer
         playerDisplayOutput = AlphaPlayerDisplayOutput(player: alphaPlayer, renderer: playerRenderer, view: self)
 
         // On currentItem change, keep output
-//        observer = (player as? AVPlayer)?.observe(\AVPlayer.currentItem, options: [.new], changeHandler: { [unowned self] player, _ in
+        observer = (player as? AVPlayer)?.observe(\AVPlayer.currentItem, options: [.new], changeHandler: { [unowned self] player, _ in
+//            print("currentItem change?")
 //            if let alphaPlayerItem = player.currentItem as? AlphaPlayerItem {
 //                alphaPlayerItem.add(self.rgbOutput)
 //                alphaPlayerItem.alphaItem.add(self.alphaOutput)
 //            }
-//        })
+        })
     }
     
     // MARK: - AlphaPlayerRendererView

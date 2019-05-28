@@ -10,48 +10,55 @@ import AVFoundation
 
 // TODO: Explore looping, chaining of items, etc.
 ///
-/// 
-///
-public class AlphaPlayer: AVPlayer, AlphaPlayerProtocol {
-
-    ///
-    private var playerItem: AlphaPlayerItem!
+public final class AlphaPlayer: MultipleItemPlayer, AlphaPlayerProtocol {
     
-    ///
-    internal var alphaPlayer: AVPlayer!
+    public private(set) var currentComposition: AlphaPlayerItemComposition?
 
-    public override init() {
-        super.init()
-    }
-
-    // status ready -> if alphaPlayer status ready
-    public required init(alphaPlayerItem item: AlphaPlayerItem) {
-        super.init(playerItem: item)
-        playerItem = item
-        alphaPlayer = AVPlayer(playerItem: item.alphaItem)
-    }
-
-    // MARK: - AVPlayer
-
-    public override func pause() {
-        super.pause()
-        alphaPlayer.pause()
-    }
-    
-    public override func play() {
-        super.play()
-        alphaPlayer.play()
+    public convenience init(composition: AlphaPlayerItemComposition) {
+        self.init(playerItems: composition.playerItems)
+        currentComposition = composition
         
-        // TODO: Understand setRate / hostTime
+//        composition.playbackDelegate = self
     }
 
-    public override func playImmediately(atRate rate: Float) {
-        super.playImmediately(atRate: rate)
-        alphaPlayer.playImmediately(atRate: rate)
+    private var statusObserver: NSKeyValueObservation?
+    private var otherStatusObservers: [NSKeyValueObservation]?
+    
+    internal func preload() {
+        guard statusObserver == nil else {
+            return
+        }
+
+        statusObserver = observe(\.aggregateStatus, changeHandler: { player, _ in
+            print("status ready?", player.aggregateStatus)
+            if player.aggregateStatus == .readyToPlay {
+                player.preroll(atRate: 1) // this prerolls all
+            }
+        })
     }
     
-    public override func replaceCurrentItem(with item: AVPlayerItem?) {
-        // TODO: Assert that item is AlphaPlayerItem?
-        super.replaceCurrentItem(with: item)
+    internal func syncPlay(atHostTime hostTime: CMTime) {
+        let players: [AVPlayer] = [self] + otherPlayers
+        players.forEach {
+            $0.setRate(1.0, time: .invalid, atHostTime: hostTime)
+        }
+    }
+
+}
+
+extension AlphaPlayer: VideoPlaybackCompositionDelegate {
+    internal func playbackWillEnd(_ composition: VideoPlaybackComposition) {
+        print(#function)
+        // Prepare for looping
+        // nextItem set nextOutput
+        // nextItem.preroll()
+    }
+    
+    internal func playbackDidEnd(_ composition: VideoPlaybackComposition, hostTime: CMTime) {
+        // Switch currentOutput & nextOutput, compositionCallback to nil
+        print(#function)
+        composition.seek(to: .zero) { (_) in
+            self.play()
+        }
     }
 }
