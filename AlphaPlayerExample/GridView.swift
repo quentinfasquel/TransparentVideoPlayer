@@ -20,11 +20,11 @@ class GridView: UIView {
         return stackView
     }()
 
-    public let columCount: Int
-    public let rowCount: Int
+    public private(set) var columnCount: Int
+    public private(set) var rowCount: Int
     
     required init(columnCount: Int, rowCount: Int) {
-        self.columCount = columnCount
+        self.columnCount = columnCount
         self.rowCount = rowCount
         super.init(frame: .zero)
         self.createGridView(columnCount, rowCount: rowCount)
@@ -40,6 +40,17 @@ class GridView: UIView {
         return view!
     }
 
+    internal func reset(_ columnCount: Int, rowCount: Int) {
+        verticalStackView.removeFromSuperview()
+        verticalStackView.arrangedSubviews.forEach { subview in
+            verticalStackView.removeArrangedSubview(subview)
+        }
+
+        self.columnCount = columnCount
+        self.rowCount = rowCount
+        self.createGridView(columnCount, rowCount: rowCount)
+    }
+    
     private func createGridView(_ columnCount: Int, rowCount: Int) {
         guard verticalStackView.superview == nil else {
             return // Already set

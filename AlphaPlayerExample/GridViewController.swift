@@ -22,7 +22,7 @@ class GridViewController: UIViewController {
     let clipCellsToBounds: Bool = true
     
      // 3 x 5 is still working fine
-    let gridView = GridView(columnCount: 1, rowCount: 2)
+    let gridView = GridView(columnCount: 2, rowCount: 4)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +37,30 @@ class GridViewController: UIViewController {
             gridView.topAnchor.constraint(equalTo: view.topAnchor),
             gridView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
 
-        setupPlayers()
+        setupMultipleOutputPlayer()
+//        setupMultiplePlayers()
     }
 
-    private func setupPlayers() {
+    private func setupMultipleOutputPlayer() {
+        gridView.reset(4, rowCount: 4)
+
+        guard let player = try? createPlayer() else {
+            return
+        }
+        
+        players.append(player)
+        
+        (0..<4).forEach { (col) in
+            (0..<4).forEach({ (row) in
+                let playerView = createPlayerView(into: gridView.cellView(col, row))
+                playerView.setPlayer(player)
+            })
+        }
+ 
+        player.seek(to: .zero)        
+    }
+    
+    private func setupMultiplePlayers() {
         func addPlayer(_ col: Int, _ row: Int) {
             guard let player = try? createPlayer() else {
                 return
@@ -56,14 +76,14 @@ class GridViewController: UIViewController {
         }
 
         addPlayer(0, 0)
-//        addPlayer(0, 1)
-//        addPlayer(0, 2)
-//        addPlayer(0, 3)
+        addPlayer(0, 1)
+        addPlayer(0, 2)
+        addPlayer(0, 3)
 //        addPlayer(0, 4)
-//        addPlayer(1, 0)
-//        addPlayer(1, 1)
-//        addPlayer(1, 2)
-//        addPlayer(1, 3)
+        addPlayer(1, 0)
+        addPlayer(1, 1)
+        addPlayer(1, 2)
+        addPlayer(1, 3)
 //        addPlayer(1, 4)
 //        addPlayer(2, 0)
 //        addPlayer(2, 1)
