@@ -85,8 +85,6 @@
 		6655D0F7227EC50400E5F41B /* AlphaPlayerRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerRenderer.swift; sourceTree = "<group>"; };
 		6655D10422809B4F00E5F41B /* BasePlayerRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePlayerRenderer.swift; sourceTree = "<group>"; };
 		6655D10622809BEE00E5F41B /* AlphaPlayerKernelRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerKernelRenderer.swift; sourceTree = "<group>"; };
-		66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerLooper.swift; sourceTree = "<group>"; };
-		66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaQueuePlayer.swift; sourceTree = "<group>"; };
 		66B85301227A598B00C95439 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		66B85303227A631E00C95439 /* TouchDownGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchDownGestureRecognizer.swift; sourceTree = "<group>"; };
 		66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerProtocol.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 		66F03B622275130600956655 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66F03B6822752DC200956655 /* playdoh-bat-alpha.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "playdoh-bat-alpha.mp4"; sourceTree = "<group>"; };
 		66F03B6922752DC200956655 /* playdoh-bat-rgb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "playdoh-bat-rgb.mp4"; sourceTree = "<group>"; };
-		66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerItem.swift; sourceTree = "<group>"; };
 		66F03B6E22768B8F00956655 /* AlphaPlayerItem.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = AlphaPlayerItem.metal; sourceTree = "<group>"; };
 		66F03B7022774AA600956655 /* AlphaPlayerItemVideoOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerItemVideoOutput.swift; sourceTree = "<group>"; };
 		66F03B7222774ADC00956655 /* AlphaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaPlayerView.swift; sourceTree = "<group>"; };
@@ -141,16 +138,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6641F6B72288CFDE00F3DE76 /* deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				66B852FD2279EAD600C95439 /* AlphaPlayerLooper.swift */,
-				66B852FF2279EB5700C95439 /* AlphaQueuePlayer.swift */,
-				66F03B6C22755C0900956655 /* AlphaPlayerItem.swift */,
-			);
-			name = deprecated;
-			sourceTree = "<group>";
-		};
 		6641F6B82288CFF700F3DE76 /* base */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				6641F6B82288CFF700F3DE76 /* base */,
-				6641F6B72288CFDE00F3DE76 /* deprecated */,
 				6655D10322809B2900E5F41B /* Renderer */,
 				66B85305227A655000C95439 /* AlphaPlayerProtocol.swift */,
 				66B85307227A65A900C95439 /* AlphaPlayerDisplayOutput.swift */,
