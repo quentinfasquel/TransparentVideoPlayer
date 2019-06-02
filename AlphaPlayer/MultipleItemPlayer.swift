@@ -117,4 +117,30 @@ public class MultipleItemPlayer: AVPlayer {
     internal func restart() {
         
     }
+    
+    // MARK: -
+    
+    private var statusObserver: NSKeyValueObservation?
+    private var otherStatusObservers: [NSKeyValueObservation]?
+    
+    internal func preload() {
+        guard statusObserver == nil else {
+            return
+        }
+        
+        statusObserver = observe(\.aggregateStatus, changeHandler: { player, _ in
+            print("status ready?", player.aggregateStatus)
+            if player.aggregateStatus == .readyToPlay {
+                player.preroll(atRate: 1) // this prerolls all
+            }
+        })
+    }
+    
+    internal func syncPlay(atHostTime hostTime: CMTime) {
+        let players: [AVPlayer] = [self] + otherPlayers
+        players.forEach {
+            $0.setRate(1.0, time: .invalid, atHostTime: hostTime)
+        }
+    }
+
 }

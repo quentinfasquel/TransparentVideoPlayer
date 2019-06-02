@@ -21,9 +21,7 @@ public protocol PlayerProtocol: AnyObject, PlaybackControl {
 }
 
 public protocol AlphaPlayerProtocol: AnyObject, PlaybackControl {
-//    var currentItem: AVPlayerItem? { get }
-//    var currentAlphaItem: AVPlayerItem? { get }
-    var currentComposition: AlphaPlayerItemComposition? { get }
+    var currentComposition: VideoPlaybackComposition? { get }
 }
 
 // MARK: -

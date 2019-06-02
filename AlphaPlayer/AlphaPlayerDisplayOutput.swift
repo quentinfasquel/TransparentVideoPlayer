@@ -27,6 +27,8 @@ internal class AlphaPlayerDisplayOutput {
     private let renderer: AlphaPlayerRendererProtocol
     private let view: AlphaPlayerRendererView
 
+    internal var currentPlayer: AlphaPlayer?
+    
     internal required init(renderer: AlphaPlayerRendererProtocol, view: AlphaPlayerRendererView) {
         self.renderer = renderer
         self.view = view
@@ -40,12 +42,12 @@ internal class AlphaPlayerDisplayOutput {
         self.init(renderer: renderer, view: view)
 
         currentPlayer = player as? AlphaPlayer
-        currentItem = composition
+//        currentItem = composition
         configureComposition(composition)
         
     }
 
-    private func configureComposition(_ composition: AlphaPlayerItemComposition) {
+    private func configureComposition(_ composition: VideoPlaybackComposition) {
         composition.addDisplayOutput(self)
 
         if composition.displayLink?.isPaused ?? true {
@@ -69,18 +71,18 @@ internal class AlphaPlayerDisplayOutput {
         commandBuffer?.commit()
     }
     
-    private var currentPlayer: AlphaPlayer?
-    private var nextPlayer: AlphaPlayer?
+//    private var currentPlayer: AlphaPlayer?
+//    private var nextPlayer: AlphaPlayer?
 
     // a playback composition, will output to a view using a given renderer
-    private var currentItem: AlphaPlayerItemComposition?
-    private var nextItem: AlphaPlayerItemComposition?
-    
-    private func swapPlayers() {
-        let tmpPlayer = currentPlayer
-        currentPlayer = nextPlayer
-        nextPlayer = tmpPlayer
-    }
+//    private var currentItem: AlphaPlayerItemComposition?
+//    private var nextItem: AlphaPlayerItemComposition?
+//
+//    private func swapPlayers() {
+//        let tmpPlayer = currentPlayer
+//        currentPlayer = nextPlayer
+//        nextPlayer = tmpPlayer
+//    }
 }
 
 // MARK: -
@@ -92,7 +94,7 @@ extension AlphaPlayerDisplayOutput: VideoPlaybackCompositionDisplayOutput {
 }
 
 // MARK: -
-
+/*
 extension AlphaPlayerDisplayOutput: VideoPlaybackCompositionDelegate {
     internal func playbackWillEnd(_ composition: VideoPlaybackComposition) {
 //        print(#function)
@@ -126,4 +128,4 @@ extension AlphaPlayerDisplayOutput: VideoPlaybackCompositionDelegate {
         }
 
     }
-}
+}*/

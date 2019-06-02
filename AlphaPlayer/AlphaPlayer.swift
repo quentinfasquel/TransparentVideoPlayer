@@ -11,38 +11,17 @@ import AVFoundation
 // TODO: Explore looping, chaining of items, etc.
 ///
 public final class AlphaPlayer: MultipleItemPlayer, AlphaPlayerProtocol {
-    
-    public private(set) var currentComposition: AlphaPlayerItemComposition?
+
+    public private(set) var currentComposition: VideoPlaybackComposition?
 
     public convenience init(composition: AlphaPlayerItemComposition) {
         self.init(playerItems: composition.playerItems)
         currentComposition = composition
         
+        debugPrint(#function)
 //        composition.playbackDelegate = self
     }
 
-    private var statusObserver: NSKeyValueObservation?
-    private var otherStatusObservers: [NSKeyValueObservation]?
-    
-    internal func preload() {
-        guard statusObserver == nil else {
-            return
-        }
-
-        statusObserver = observe(\.aggregateStatus, changeHandler: { player, _ in
-            print("status ready?", player.aggregateStatus)
-            if player.aggregateStatus == .readyToPlay {
-                player.preroll(atRate: 1) // this prerolls all
-            }
-        })
-    }
-    
-    internal func syncPlay(atHostTime hostTime: CMTime) {
-        let players: [AVPlayer] = [self] + otherPlayers
-        players.forEach {
-            $0.setRate(1.0, time: .invalid, atHostTime: hostTime)
-        }
-    }
 
 }
 

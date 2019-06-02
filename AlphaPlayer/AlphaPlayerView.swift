@@ -52,13 +52,13 @@ public class AlphaPlayerView: MTKView, AlphaPlayerRendererView {
         playerDisplayOutput = AlphaPlayerDisplayOutput(player: alphaPlayer, renderer: playerRenderer, view: self)
 
         // On currentItem change, keep output
-        observer = (player as? AVPlayer)?.observe(\AVPlayer.currentItem, options: [.new], changeHandler: { [unowned self] player, _ in
+//        observer = (player as? AVPlayer)?.observe(\AVPlayer.currentItem, options: [.new], changeHandler: { [unowned self] player, _ in
 //            print("currentItem change?")
 //            if let alphaPlayerItem = player.currentItem as? AlphaPlayerItem {
 //                alphaPlayerItem.add(self.rgbOutput)
 //                alphaPlayerItem.alphaItem.add(self.alphaOutput)
 //            }
-        })
+//        })
     }
     
     // MARK: - AlphaPlayerRendererView

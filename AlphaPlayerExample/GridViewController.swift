@@ -18,7 +18,8 @@ enum AppError: Error {
 class GridViewController: UIViewController {
 
     var players: [AlphaPlayerProtocol] = []
-
+    var looper: MultipleItemPlayerLooper?
+    
     let clipCellsToBounds: Bool = true
     
      // 3 x 5 is still working fine
@@ -37,12 +38,15 @@ class GridViewController: UIViewController {
             gridView.topAnchor.constraint(equalTo: view.topAnchor),
             gridView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
 
-        setupMultipleOutputPlayer()
-//        setupMultiplePlayers()
+//        setupMultipleOutputPlayer()
+        setupMultiplePlayers()
     }
-
+    
     private func setupMultipleOutputPlayer() {
-        gridView.reset(4, rowCount: 4)
+        let columnCount = 1
+        let rowCount = 2
+
+        gridView.reset(columnCount, rowCount: rowCount)
 
         guard let player = try? createPlayer() else {
             return
@@ -50,16 +54,20 @@ class GridViewController: UIViewController {
         
         players.append(player)
         
-        (0..<4).forEach { (col) in
-            (0..<4).forEach({ (row) in
+        (0..<columnCount).forEach { (col) in
+            (0..<rowCount).forEach({ (row) in
                 let playerView = createPlayerView(into: gridView.cellView(col, row))
                 playerView.setPlayer(player)
             })
         }
  
-        player.seek(to: .zero)        
+        player.seek(to: .zero)
+        player.play()
+
+        // Maintain a strong reference to a player looper so it keeps looping
+        looper = MultipleItemPlayerLooper(player: player)
     }
-    
+
     private func setupMultiplePlayers() {
         func addPlayer(_ col: Int, _ row: Int) {
             guard let player = try? createPlayer() else {
@@ -79,20 +87,16 @@ class GridViewController: UIViewController {
         addPlayer(0, 1)
         addPlayer(0, 2)
         addPlayer(0, 3)
-//        addPlayer(0, 4)
+
         addPlayer(1, 0)
         addPlayer(1, 1)
         addPlayer(1, 2)
         addPlayer(1, 3)
-//        addPlayer(1, 4)
-//        addPlayer(2, 0)
-//        addPlayer(2, 1)
-//        addPlayer(2, 2)
-//        addPlayer(2, 3)
-//        addPlayer(2, 4)
     }
 
-    private func createPlayer() throws -> AlphaPlayerProtocol {
+    // MARK: - Common Private Methods
+    
+    private func createPlayer() throws -> AlphaPlayer {
         let basename = "playdoh-bat"
         let bundle = Bundle.main
 
@@ -103,14 +107,6 @@ class GridViewController: UIViewController {
         
 
         let playerItem = try AlphaPlayerItemComposition(url1, url2)
-
-        // TODO: Investigate why "replay one item" does not work with AVQueuePlayer
-//        let queuePlayer = AlphaQueuePlayer(alphaPlayerItem: playerItem)
-//        queuePlayer.actionAtItemEnd = .pause
-//        return queuePlayer
-
-        // TODO: sublass AVPlayerLooper AlphaPlayerLooper?
-//        playerLooper = AlphaPlayerLooper(player: player, templateItem: playerItem)
 
         return AlphaPlayer(composition: playerItem)
     }
