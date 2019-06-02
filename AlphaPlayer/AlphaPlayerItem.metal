@@ -1,6 +1,6 @@
 //
 //  AlphaPlayerItem.metal
-//  TestComposition
+//  AlphaPlayer
 //
 //  Created by Quentin Fasquel on 28/04/2019.
 //  Copyright © 2019 Quentin Fasquel. All rights reserved.

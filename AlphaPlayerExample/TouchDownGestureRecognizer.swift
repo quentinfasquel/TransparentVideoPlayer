@@ -1,6 +1,6 @@
 //
 //  TouchDownGestureRecognizer.swift
-//  TestComposition
+//  AlphaPlayerExample
 //
 //  Created by Quentin Fasquel on 01/05/2019.
 //  Copyright © 2019 Quentin Fasquel. All rights reserved.

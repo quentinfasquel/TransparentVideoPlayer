@@ -1,6 +1,6 @@
 //
 //  AlphaPlayerView.swift
-//  TestComposition
+//  AlphaPlayer
 //
 //  Created by Quentin Fasquel on 29/04/2019.
 //  Copyright © 2019 Quentin Fasquel. All rights reserved.
