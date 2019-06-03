@@ -1,5 +1,5 @@
 //
-//  AlphaPlayerItemComposition.swift
+//  AlphaPlayerItem.swift
 //  AlphaPlayer
 //
 //  Created by Quentin Fasquel on 11/05/2019.
@@ -8,16 +8,16 @@
 
 import AVFoundation
 
-public typealias AlphaPlayerItemCompositionError = AlphaPlayerItemComposition.Error
+public typealias AlphaPlayerItemError = AlphaPlayerItem.Error
 
-public class AlphaPlayerItemComposition: VideoPlaybackComposition {
+public class AlphaPlayerItem: VideoPlaybackComposition {
     public enum Error: Swift.Error {
         case incorrectFormat // RGB or Alpha isn't a supported video format
         case incorrectSize // RGB & Alpha aren't videos of the same `naturalSize`
         case incorrectDuration // RGB & Alpha aren't videos of the same `duration`
     }
 
-    internal required init(assets: [AVAsset], videoOutput: MultiplePlayerItemVideoOutput) {
+    internal required init(assets: [AVAsset], videoOutput: VideoPlaybackCompositionVideoOutput) {
         super.init(assets: assets, videoOutput: videoOutput)
 
         playerItems[0].add(videoOutput.outputs[0])
@@ -27,10 +27,9 @@ public class AlphaPlayerItemComposition: VideoPlaybackComposition {
     public convenience init(_ rgbURL: URL, _ alphaURL: URL) throws {
         let assetRGB = AVAsset(url: rgbURL)
         let assetAlpha = AVAsset(url: alphaURL)
-
-        try AlphaPlayerItemComposition.validateAssets(assetRGB, assetAlpha)
-
         let videoOutput = AlphaPlayerItemVideoOutput()
+
+        try AlphaPlayerItem.validateAssets(assetRGB, assetAlpha)
 
         self.init(assets: [assetRGB, assetAlpha], videoOutput: videoOutput)
     }

@@ -129,7 +129,6 @@ public class MultipleItemPlayer: AVPlayer {
         }
         
         statusObserver = observe(\.aggregateStatus, changeHandler: { player, _ in
-            print("status ready?", player.aggregateStatus)
             if player.aggregateStatus == .readyToPlay {
                 player.preroll(atRate: 1) // this prerolls all
             }

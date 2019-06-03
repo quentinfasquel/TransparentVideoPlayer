@@ -14,7 +14,7 @@ import UIKit
 ///
 /// An aggregate of an `rgb` and a `alpha` AVPlayerItemVideoOutputs
 ///
-public class AlphaPlayerItemVideoOutput: MultiplePlayerItemVideoOutput {
+public class AlphaPlayerItemVideoOutput: VideoPlaybackCompositionVideoOutput {
 
     internal enum OutputName: String {
         case rgb, alpha
@@ -27,8 +27,6 @@ public class AlphaPlayerItemVideoOutput: MultiplePlayerItemVideoOutput {
     internal var outputRGB: AVPlayerItemVideoOutput { return output(named: .rgb) }
     internal var outputAlpha: AVPlayerItemVideoOutput { return output(named: .alpha) }
 
-//    var onReadyToPlay: (() -> Void)?
-    
     public required init() {
         super.init()
 
@@ -52,8 +50,4 @@ public class AlphaPlayerItemVideoOutput: MultiplePlayerItemVideoOutput {
         let outputAlpha = AVPlayerItemVideoOutput(pixelBufferAttributes: attributes)
         addOutput(id: OutputName.alpha.rawValue, outputAlpha)
     }
-    
-//    public func itemTime(forHostTime hostTimeInSeconds: CFTimeInterval) -> CMTime {
-//        return outputRGB.itemTime(forHostTime: hostTimeInSeconds)
-//    }
 }

@@ -106,7 +106,7 @@ class GridViewController: UIViewController {
         }
         
 
-        let playerItem = try AlphaPlayerItemComposition(url1, url2)
+        let playerItem = try AlphaPlayerItem(url1, url2)
 
         return AlphaPlayer(composition: playerItem)
     }

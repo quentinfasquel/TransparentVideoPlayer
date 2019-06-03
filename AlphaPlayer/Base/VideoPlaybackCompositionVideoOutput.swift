@@ -9,14 +9,15 @@
 import AVFoundation
 
 /// An aggregate of playerItem video outputs
-public class MultiplePlayerItemVideoOutput: NSObject {
+public class VideoPlaybackCompositionVideoOutput: NSObject {
 
     public private(set) var outputs: [AVPlayerItemVideoOutput] = []
     internal private(set) var outputsById: [String: AVPlayerItemVideoOutput] = [:]
 
     /// item output pull delegate
-    private let delegateQueue: DispatchQueue = DispatchQueue(label: "blop")
-    
+    private let delegateQueue: DispatchQueue = DispatchQueue(
+        label: "com.alphaPlayer.videoPlaybackCompositionVideoOutput")
+
     public required override init() {
         super.init()
     }
@@ -43,7 +44,7 @@ public class MultiplePlayerItemVideoOutput: NSObject {
     }
 }
 
-extension MultiplePlayerItemVideoOutput: AVPlayerItemOutputPullDelegate {
+extension VideoPlaybackCompositionVideoOutput: AVPlayerItemOutputPullDelegate {
 
     public func outputMediaDataWillChange(_ sender: AVPlayerItemOutput) {
         // Does nothing by default

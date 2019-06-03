@@ -32,7 +32,7 @@ public class MultipleItemPlayerLooper: NSObject, VideoPlaybackCompositionDelegat
     // MARK: - Video Playback Composition Delegate
 
     internal func playbackWillEnd(_ composition: VideoPlaybackComposition) {
-        if let newItem = composition.copy() as? AlphaPlayerItemComposition {
+        if let newItem = composition.copy() as? AlphaPlayerItem {
             nextPlayer?.replaceCurrentItem(with: newItem)
             nextPlayer?.preload()
             nextItem = newItem

@@ -1,6 +1,6 @@
 //
 //  AlphaPlayerProtocol.swift
-//  AlphaPlayerExample
+//  AlphaPlayer
 //
 //  Created by Quentin Fasquel on 01/05/2019.
 //  Copyright © 2019 Quentin Fasquel. All rights reserved.
@@ -23,12 +23,3 @@ public protocol PlayerProtocol: AnyObject, PlaybackControl {
 public protocol AlphaPlayerProtocol: AnyObject, PlaybackControl {
     var currentComposition: VideoPlaybackComposition? { get }
 }
-
-// MARK: -
-
-//extension AlphaPlayerProtocol {
-//
-//    public var currentAlphaItem: AVPlayerItem? {
-//        return (currentItem as? AlphaPlayerItem)?.alphaItem
-//    }
-//}

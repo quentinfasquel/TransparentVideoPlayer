@@ -25,7 +25,7 @@ internal protocol VideoPlaybackCompositionDelegate: AnyObject {
 
 public class VideoPlaybackComposition: AVPlayerItem {
 
-    internal let videoOutput: MultiplePlayerItemVideoOutput
+    internal let videoOutput: VideoPlaybackCompositionVideoOutput
     internal let otherPlayerItems: [AVPlayerItem]
 
     internal var displayLink: CADisplayLink!
@@ -38,7 +38,7 @@ public class VideoPlaybackComposition: AVPlayerItem {
         return [self] + otherPlayerItems
     }()
 
-    internal required init(assets: [AVAsset], videoOutput: MultiplePlayerItemVideoOutput) {
+    internal required init(assets: [AVAsset], videoOutput: VideoPlaybackCompositionVideoOutput) {
         var otherAssets = assets
         let asset = otherAssets.removeFirst()
 
@@ -61,14 +61,6 @@ public class VideoPlaybackComposition: AVPlayerItem {
         let outputCopy = type(of: videoOutput).init()
         let copy = type(of: self).init(assets: assets, videoOutput: outputCopy)
         copy.displayOutputs = displayOutputs
-        
-//        copy.playerItems.forEach { $0.seek(to: .zero) }
-//        playerItems.forEach { item in
-//            item.outputs.forEach { output in
-//                outputCopy.addOutput(id: , )
-//            }
-//        }
-        
 
         return copy
     }
@@ -173,19 +165,6 @@ extension VideoPlaybackComposition: PlayerItemProtocol {
     
     public override func errorLog() -> AVPlayerItemErrorLog? {
         return super.errorLog() ?? otherPlayerItems.first(where: { $0.errorLog() != nil })?.errorLog()
-    }
-    
-    public override var status: AVPlayerItem.Status {
-        return super.status
-//        let (rgbStatus, alphaStatus) = (super.status, alphaItem.status)
-//        switch (rgbStatus, alphaStatus) {
-//        case (.readyToPlay, .readyToPlay):
-//            return .readyToPlay
-//        case (.failed, _), (_, .failed):
-//            return .failed
-//        default:
-//            return .unknown
-//        }
     }
     
     // MARK: -

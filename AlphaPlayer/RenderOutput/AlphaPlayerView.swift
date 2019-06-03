@@ -49,19 +49,13 @@ public class AlphaPlayerView: MTKView, AlphaPlayerRendererView {
     
     public func setPlayer(_ alphaPlayer: AlphaPlayerProtocol) {
         player = alphaPlayer
-        playerDisplayOutput = AlphaPlayerDisplayOutput(player: alphaPlayer, renderer: playerRenderer, view: self)
-
-        // On currentItem change, keep output
-//        observer = (player as? AVPlayer)?.observe(\AVPlayer.currentItem, options: [.new], changeHandler: { [unowned self] player, _ in
-//            print("currentItem change?")
-//            if let alphaPlayerItem = player.currentItem as? AlphaPlayerItem {
-//                alphaPlayerItem.add(self.rgbOutput)
-//                alphaPlayerItem.alphaItem.add(self.alphaOutput)
-//            }
-//        })
+        playerDisplayOutput = AlphaPlayerDisplayOutput(
+            player: alphaPlayer,
+            renderer: playerRenderer,
+            view: self)
     }
     
-    // MARK: - AlphaPlayerRendererView
+    // MARK: - Alpha Player Renderer View
 
     public func nextDrawable() -> CAMetalDrawable? {
         return (layer as? CAMetalLayer)?.nextDrawable()
